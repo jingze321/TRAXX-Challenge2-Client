@@ -1,24 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Route, Routes,useParams } from 'react-router-dom'
+import {SignIn} from './components/singIn.js'
+import PrivateRoute from './components/common/private-route.js'
+import {Navbar} from './components/common/nav-bar.js'
+import {Dashboard} from './components/dashboard.js'
+import Axios from 'axios';
+import React, { useState,useEffect,createContext  } from 'react'
+
+export const loginContext = createContext();
 
 function App() {
+  const [loginStatus,setLoginStatus]= useState([]);
+
+  Axios.defaults.withCredentials = true;
+  useEffect(()=>{
+    Axios.get("http://localhost:4000/api/login")
+          .then(res=>{
+            if (res.data.loggedIn){
+              setLoginStatus(res.data.user[0].username);
+            }else{
+              setLoginStatus("noData");
+            }
+          })
+  },[])
+
+  // console.log(loginStatus,'loginStatus');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <loginContext.Provider value={loginStatus}>
+      <Navbar/>
+        <Router>
+              <Routes>
+                <Route exact path='/login' element={<PrivateRoute />}>
+                  <Route exact path="/login" element={<SignIn/>} />
+                </Route>
+                <Route exact path='/' element={<PrivateRoute/>}>
+                  <Route exact path='/' element={<Dashboard/>}/>
+                </Route>
+              </Routes>
+        </Router>
+      </loginContext.Provider>
+    </>
   );
 }
 

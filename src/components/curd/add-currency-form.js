@@ -30,13 +30,27 @@ export function AddCurrencyForm() {
   const errorRef = useRef();
   const handleSubmit = e => {
     // e.preventDefault();
+    sessionStorage.setItem('baseValue',baseValue.code);
+
     addCurrency(baseValue.code,counterValue.code,rateValue)
     
   };
 
   useEffect(()=>{
+    if (sessionStorage.baseValue) {
+      const findValue = Object.values(curruencies).find(currency=>currency.code===sessionStorage.baseValue)
+      console.log(findValue);
 
-    setBaseValue(Object.values(curruencies)[0]);
+      if(findValue){
+        setBaseValue(findValue);
+      }else{
+        setBaseValue(Object.values(curruencies)[0]);
+      }
+
+    } else {
+      setBaseValue(Object.values(curruencies)[0]);
+
+    }
 
     // const temp=Object.values(curruencies).filter(currency=>{
     //   return counterValueList.some(existCurrency=>{
@@ -97,7 +111,7 @@ export function AddCurrencyForm() {
                 onChange={(event, newInputValue) => {
                   setBaseValue(newInputValue);
                 }}
-                renderInput={(params) => <TextField {...params} label="Base" />}
+                renderInput={(params) => <TextField {...params} label="Base (CURD)" />}
               />
           </Grid>
           <Grid item xs={12} lg={4}> 

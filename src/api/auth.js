@@ -21,7 +21,6 @@ export const loginUser = async (username, password) => {
     axios
         .post(url,data,{ withCredentials: true })
         .then(({ status, headers, data }) => {
-            console.log(status,headers,data,'test123');
 
           if (status < 200 || status >= 300) {
             return reject("error occurred");
@@ -43,7 +42,6 @@ export const loginUser = async (username, password) => {
   };
 
   export const logoutUser = async () => {
-    console.log("logout");
     const logoutUrl = `http://localhost:4000/api/logout`;
     return new Promise((resolve, reject) => {
         axios

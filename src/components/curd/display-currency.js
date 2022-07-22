@@ -20,7 +20,6 @@ const styles = {
 };
 
 export function DisplayCurrency(props) {
-    // console.log(props,'props');
    const [fade,setFade] = useState(false);
    const gridRef = useRef();
    
@@ -35,7 +34,6 @@ export function DisplayCurrency(props) {
       }, 500);
     });
 
-    // console.log(index,'indexindex');
     promise.then(() => props.removeCurrency(props.currency.id));
 
   };

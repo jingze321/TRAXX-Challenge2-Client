@@ -14,7 +14,6 @@ import {loginContext} from './../../App.js'
 
 export const Navbar = () => {
     const login = useContext(loginContext);
-    // console.log(login,'loginlogin');
     const onLogout = async () => {
  
         logoutUser().then(()=>{
@@ -46,7 +45,7 @@ export const Navbar = () => {
                 </div>
             </Typography>
             </Box>
-              {(login.length>0&&login!=="noData") &&<LogoutIcon onClick={()=>{onLogout()}}/>}
+              {(login.length>0&&login!=="noData") &&<IconButton  onClick={()=>{onLogout()}}> <LogoutIcon/></IconButton>}
             </Toolbar>
       </AppBar>
     )

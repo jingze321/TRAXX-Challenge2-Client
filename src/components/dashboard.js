@@ -11,12 +11,9 @@ import {ExchangeForm} from './exchange/exchange-form.js'
 
 
 export function Dashboard() {
-  const login = JSON.stringify(useContext(loginContext));
-  const [list,setList]=useState({});
 
 
-  const addCurrencyList = async (e) => {
-  };
+ 
 
 
   return (
@@ -37,7 +34,7 @@ export function Dashboard() {
             <Fragment>
               <Grid container spacing={0}>
                 <Grid item xs={12}>
-                    <AddCurrencyForm addCurrencyList={addCurrencyList} />
+                    <AddCurrencyForm  />
                 </Grid>
               </Grid>
             </Fragment>

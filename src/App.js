@@ -24,7 +24,6 @@ function App() {
           })
   },[])
 
-  // console.log(loginStatus,'loginStatus');
   return (
     <>
     <loginContext.Provider value={loginStatus}>

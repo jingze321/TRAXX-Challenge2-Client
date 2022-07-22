@@ -92,14 +92,6 @@ export function SignIn() {
           position: "relative",
         }}
       >
-        {/* <LangSettings
-          sx={{
-            position: "absolute",
-            top: 5,
-            right: 5,
-            backgroundColor: "white",
-          }}
-        /> */}
         <img
           src="/logo.png"
           alt="logo"
@@ -194,7 +186,6 @@ export function SignIn() {
           ))}
         </Carousel>
       </Box>
-      {/* <ResetPasswordDialog open={open} setOpen={setOpen} /> */}
       <Snackbar
         open={open}
         autoHideDuration={6000}

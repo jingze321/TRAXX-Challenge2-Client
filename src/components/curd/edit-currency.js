@@ -18,7 +18,6 @@ const styles = {
 };
 export function EditCurrency(props) {
   const [rateValue,setRateValue]=useState(props.currency.rate);
-console.log(props,'props');
   return (
     <Grid xs={6} item key={props.index}>
       <Paper elevation={2} style={styles.Paper}>

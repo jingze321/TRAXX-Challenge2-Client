@@ -55,16 +55,14 @@ export function ExchangeForm(props) {
 
 
   const switchCurrency =()=>{
-    // const temp = baseValue;
     setBaseValue({...counterValue});
-    // setCounterValue({...temp});
-    // console.log(baseValue,counterValue);
   }
   const closeResult =()=>{
     setRateInfo({});
   }
 
   const searchRate =()=>{
+    setRateInfo({})
     getCurrentRate(baseValue.code,counterValue.code).then((res)=>{
         let data = res[0];
         data['amount'] = amountValue;
@@ -93,9 +91,7 @@ export function ExchangeForm(props) {
         const filterList = 
           Object.values(curruencies).filter((x) => list.some((y) => x.code===y.counter));
         setCounterList(filterList)
-        console.log(counterList,'counterList');
         if(!Object.values(counterValue).length>0 || (!filterList.some(x=>x.code===counterValue.counter))){
-          console.log(filterList);
           setCounterValue(filterList[0]);
         }
       });

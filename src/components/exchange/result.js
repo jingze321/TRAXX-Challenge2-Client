@@ -21,7 +21,6 @@ export  function ResultCard({rateInfo,closeResult}) {
    useEffect(()=>{
         setBaseValue(Object.values(curruencies).find(x => x.code === rateInfo.base));
         setcounterValue(Object.values(curruencies).find(x => x.code === rateInfo.counter));
-        console.log(baseValue,counterValue,rateInfo);
    },[])
 
   return (
@@ -48,7 +47,7 @@ export  function ResultCard({rateInfo,closeResult}) {
                 >
                     <Grid item >
                         <Typography variant="subtitle1" color="textSecondary" component="p">
-                        {rateInfo.amount} {baseValue.name} =
+                        {parseFloat(rateInfo.amount).toFixed(5)} {baseValue.name} =
                         </Typography>
                     </Grid>
 
@@ -62,7 +61,7 @@ export  function ResultCard({rateInfo,closeResult}) {
                 >                 
                     <Grid item >
                         <Typography variant="h4" color="primary.main" component="p">
-                            {rateInfo.amount*rateInfo.rate} {counterValue.name}
+                            {(rateInfo.amount*rateInfo.rate)?.toFixed(5)} {counterValue.name}
                         </Typography>
                     </Grid>
                 </Grid>

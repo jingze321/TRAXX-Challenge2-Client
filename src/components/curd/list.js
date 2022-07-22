@@ -26,17 +26,16 @@ export function List({list}) {
   
       const filterInfo =  listData.filter(data=>data.counter!==selectedInfo.counter);
       setListData(filterInfo);
+      window.location.reload();
+
     })
-    // console.log(filterInfo,selectedInfo.counter,'filterInfo');
-    // deleteCurrency(selectedInfo.base,selectedInfo.counter).then(()=>{
-      // });
+
   };
 
   const changeCurrency = (id,rate) => {
     // key.preventDefault();
     var foundIndex = listData.findIndex(x => x.id === id);
     const selectedInfo= listData[foundIndex];
-    console.log('key123',foundIndex,id);
     
     saveCurrency(selectedInfo.base,selectedInfo.counter,rate).then(()=>{
       const temp = listData;
@@ -53,15 +52,12 @@ export function List({list}) {
     let temp = listData;
     setListData(temp);
     temp[foundIndex].status = "editing"; 
-    // console.log(temp,'listData');
     setListData([...temp]);
   };
   const renderCurrency = (data,index) => {
-    console.log(data,'datadata');
 
     if (data == null) return null;
     if (data.status === "active") {
-      console.log('active');
       return (
         <DisplayCurrency
           key={data.id}

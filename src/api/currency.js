@@ -4,7 +4,6 @@ export const addCurrency = async (base, counter, rate) => {
     const data ={base, counter, rate}
     const url = `http://localhost:4000/api/currency/add`;
     return new Promise((resolve, reject) => {
-      console.log(data,'test123');
 
       axios
           .post(url,data)
@@ -32,7 +31,6 @@ export const addCurrency = async (base, counter, rate) => {
     const data ={base, counter, rate}
     const url = `http://localhost:4000/api/currency/save`;
     return new Promise((resolve, reject) => {
-      console.log(data,'test123');
 
       axios
           .post(url,data)
@@ -58,7 +56,7 @@ export const addCurrency = async (base, counter, rate) => {
 
   export const deleteCurrency = async (base, counter) => {
     const data ={base, counter}
-    console.log(data,'datadata');
+    sessionStorage.setItem('baseValue',base);
     const url = `http://localhost:4000/api/currency/delete`;
     return new Promise((resolve, reject) => {
 
@@ -85,13 +83,11 @@ export const addCurrency = async (base, counter, rate) => {
   };
 
   export const findBase = async (base) => {
-    console.log(base,'base');
     const url = `http://localhost:4000/api/currency/find-base`;
     return new Promise((resolve, reject) => {
       axios
           .get(url,{ params: { base } })
           .then(({ status, headers, data }) => {
-            console.log(data.result,'data');
   
             if (status < 200 || status >= 300) {
               return reject("error occurred");
@@ -117,7 +113,6 @@ export const addCurrency = async (base, counter, rate) => {
       axios
           .get(url,{ params: { column } })
           .then(({ status, headers, data }) => {
-            console.log(data.result,'data123');
   
             if (status < 200 || status >= 300) {
               return reject("error occurred");
@@ -143,7 +138,6 @@ export const addCurrency = async (base, counter, rate) => {
       axios
           .get(url,{ params: { base,counter } })
           .then(({ status, headers, data }) => {
-            console.log(data.result,'data');
   
             if (status < 200 || status >= 300) {
               return reject("error occurred");

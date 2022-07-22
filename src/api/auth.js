@@ -1,5 +1,3 @@
-import { setAuthDetails, clearAuthDetails } from "../redux/slices/auth-slice";
-import { store } from "../redux/store";
 import axios, { Axios } from 'axios';
 
 export const loginUser = async (username, password) => {
@@ -28,7 +26,6 @@ export const loginUser = async (username, password) => {
           return resolve(data);
         })
         .catch((err) => {
-          store.dispatch(clearAuthDetails());
           if (
             !!err.response &&
             !!err.response.data &&
